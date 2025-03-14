@@ -1,13 +1,13 @@
 Features
 
-    Basic Arithmetic Operations: Addition, subtraction, multiplication, and division.
-    Multiple Number Support: Supports calculations with more than two numbers.
-    Percentage Calculation: Easily calculate percentages of numbers.
-    Clear Functions: Clear the current entry or reset the entire calculator.
-    Sign Change: Toggle the sign of the current number between positive and negative.
-    Error Handling: Displays an error message for division by zero.
-    Decimal Point Handling: Prevents multiple decimal points in a single number.
-    Responsive UI: Visually appealing with bright buttons that change color on hover.
+* Basic Arithmetic Operations: Addition, subtraction, multiplication, and division.
+* Multiple Number Support: Supports calculations with more than two numbers.
+* Percentage Calculation: Easily calculate percentages of numbers.
+* Clear Functions: Clear the current entry or reset the entire calculator.
+* Sign Change: Toggle the sign of the current number between positive and negative.
+* Error Handling: Displays an error message for division by zero.
+* Decimal Point Handling: Prevents multiple decimal points in a single number.
+* Responsive UI: Visually appealing with bright buttons that change color on hover.
 
 Technologies Used
 
