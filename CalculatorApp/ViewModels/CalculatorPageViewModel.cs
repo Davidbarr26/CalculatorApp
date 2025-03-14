@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CalculatorApp.Models;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CalculatorApp.Models;
 
 namespace CalculatorApp.ViewModels
 {
@@ -13,17 +10,20 @@ namespace CalculatorApp.ViewModels
     {
         private readonly Calculator _calculator;
 
+        // Constructor to initialize the ViewModel
         public CalculatorPageViewModel()
         {
             _calculator = new Calculator();
         }
 
+        // Observable properties for data binding
         [ObservableProperty]
         private string _numbersLabel = "0";
 
         [ObservableProperty]
         private string _equationLabel = string.Empty;
 
+        // Command to handle number and decimal button clicks
         [RelayCommand]
         private void SelectNumber(string number)
         {
@@ -55,6 +55,7 @@ namespace CalculatorApp.ViewModels
             }
         }
 
+        // Command to handle math operator button clicks
         [RelayCommand]
         private void SelectMathOperator(string mathOperator)
         {
@@ -72,6 +73,7 @@ namespace CalculatorApp.ViewModels
             }
         }
 
+        // Command to handle percentage button click
         [RelayCommand]
         private void SelectPercentage()
         {
@@ -89,6 +91,7 @@ namespace CalculatorApp.ViewModels
             }
         }
 
+        // Command to clear all entries
         [RelayCommand]
         private void Clear()
         {
@@ -101,6 +104,7 @@ namespace CalculatorApp.ViewModels
             EquationLabel = string.Empty;
         }
 
+        // Command to clear the current entry
         [RelayCommand]
         private void ClearEntry()
         {
@@ -116,6 +120,7 @@ namespace CalculatorApp.ViewModels
             }
         }
 
+        // Command to negate the current number
         [RelayCommand]
         private void Negate()
         {
@@ -131,6 +136,7 @@ namespace CalculatorApp.ViewModels
             }
         }
 
+        // Command to calculate the result
         [RelayCommand]
         private void Calculate()
         {

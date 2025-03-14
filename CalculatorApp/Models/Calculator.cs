@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CalculatorApp.Models
 {
+    // Enum to track the current state of the calculator
     public enum CurrentState
     {
         FirstNumber,
@@ -14,6 +15,7 @@ namespace CalculatorApp.Models
 
     public class Calculator
     {
+        // Properties to hold the calculator state
         public double FirstNumber { get; set; }
         public double SecondNumber { get; set; }
         public string MathOperator { get; set; }
@@ -21,6 +23,7 @@ namespace CalculatorApp.Models
         public string Equation { get; set; }
         public CurrentState State { get; set; }
 
+        // Constructor to initialize the calculator state
         public Calculator()
         {
             FirstNumber = 0;
@@ -32,3 +35,4 @@ namespace CalculatorApp.Models
         }
     }
 }
+

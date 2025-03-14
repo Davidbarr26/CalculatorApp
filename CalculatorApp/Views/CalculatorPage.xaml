@@ -2,7 +2,13 @@
 <ContentPage
     x:Class="CalculatorApp.Views.CalculatorPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:CalculatorApp.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewmodels:CalculatorPageViewModel />
+    </ContentPage.BindingContext>
+
     <Grid
         Padding="16"
         ColumnDefinitions="*,*,*,*"
@@ -10,6 +16,7 @@
         RowDefinitions="2*,*,*,*,*,*"
         RowSpacing="2">
 
+        <!--  Label to display the equation  -->
         <Label
             x:Name="equationLabel"
             Grid.Row="0"
@@ -21,6 +28,7 @@
             TextColor="{StaticResource Gray400}"
             VerticalTextAlignment="Start" />
 
+        <!--  Label to display the current number or result  -->
         <Label
             x:Name="numbersLabel"
             Grid.ColumnSpan="4"
@@ -32,6 +40,7 @@
             TextColor="{StaticResource Gray400}"
             VerticalTextAlignment="End" />
 
+        <!--  Separator line  -->
         <BoxView
             Grid.Row="0"
             Grid.ColumnSpan="4"
@@ -39,100 +48,413 @@
             HeightRequest="1"
             VerticalOptions="End" />
 
+        <!--  Buttons for percentage, clear entry, clear, and math operators  -->
         <Button
             Grid.Row="1"
             Grid.Column="0"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectPercentageCommand}"
-            Text="%" />
+            Text="%"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
         <Button
             Grid.Row="1"
             Grid.Column="1"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding ClearEntryCommand}"
             IsVisible="True"
-            Text="CE" />
+            Text="CE"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
         <Button
             Grid.Row="1"
             Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding ClearCommand}"
-            Text="C" />
+            Text="C"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
+        <Button
+            Grid.Row="1"
+            Grid.Column="3"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
+            Command="{Binding SelectMathOperatorCommand}"
+            CommandParameter="÷"
+            Text="÷"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
+
+        <!--  Number buttons  -->
         <Button
             Grid.Row="2"
             Grid.Column="0"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="7"
-            Text="7" />
+            Text="7"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="2"
             Grid.Column="1"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="8"
-            Text="8" />
+            Text="8"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="2"
             Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="9"
-            Text="9" />
+            Text="9"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
         <Button
             Grid.Row="3"
             Grid.Column="0"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="4"
-            Text="4" />
+            Text="4"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="3"
             Grid.Column="1"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="5"
-            Text="5" />
+            Text="5"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="3"
             Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="6"
-            Text="6" />
+            Text="6"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
         <Button
             Grid.Row="4"
             Grid.Column="0"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="1"
-            Text="1" />
+            Text="1"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="4"
             Grid.Column="1"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="2"
-            Text="2" />
+            Text="2"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="4"
             Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="3"
-            Text="3" />
+            Text="3"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
         <Button
             Grid.Row="5"
             Grid.Column="0"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding NegateCommand}"
             IsVisible="True"
-            Text="+/-" />
+            Text="+/-"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="5"
             Grid.Column="1"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="0"
-            Text="0" />
+            Text="0"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="5"
             Grid.Column="2"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectNumberCommand}"
             CommandParameter="."
-            Text="." />
+            Text="."
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
 
         <Button
             Grid.Row="1"
@@ -143,25 +465,101 @@
         <Button
             Grid.Row="2"
             Grid.Column="3"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectMathOperatorCommand}"
             CommandParameter="×"
-            Text="×" />
+            Text="×"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="3"
             Grid.Column="3"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectMathOperatorCommand}"
             CommandParameter="-"
-            Text="-" />
+            Text="-"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="4"
             Grid.Column="3"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding SelectMathOperatorCommand}"
             CommandParameter="+"
-            Text="+" />
+            Text="+"
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
         <Button
             Grid.Row="5"
             Grid.Column="3"
+            Padding="10"
+            BackgroundColor="LightBlue"
+            BorderRadius="10"
             Command="{Binding CalculateCommand}"
-            Text="=" />
+            Text="="
+            TextColor="White">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="LightBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="DarkBlue" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
     </Grid>
 </ContentPage>

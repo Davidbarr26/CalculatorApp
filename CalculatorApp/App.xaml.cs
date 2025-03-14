@@ -2,11 +2,14 @@
 {
     public partial class App : Application
     {
+        // Constructor to initialize the application
         public App()
         {
             InitializeComponent();
+            MainPage = new AppShell();
         }
 
+        // Method to create the main window
         protected override Window CreateWindow(IActivationState? activationState)
         {
             Window window = new Window(new AppShell());
